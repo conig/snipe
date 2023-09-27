@@ -2,9 +2,11 @@ write_main_contents <- function(new_dir) {
   main_contents <- glue::glue(
     'library(targets)
 library(future)
-plan("multisession")
+library(tarchetypes)
+library(future.callr)
+plan(callr)
 
-tar_option_set(packages = c("data.table"))
+tar_option_set(packages = c("data.table", "future.apply"))
 
 scripts <- list.files("R",
             full.names = TRUE,
