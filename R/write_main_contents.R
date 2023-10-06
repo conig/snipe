@@ -4,7 +4,7 @@ write_main_contents <- function(new_dir) {
 library(future)
 library(tarchetypes)
 library(future.callr)
-plan(callr, workers = availableWorkers() - 5)
+plan(callr, workers = snipe::n_workers())
 
 tar_option_set(packages = c("data.table", "future.apply"))
 

@@ -1,10 +1,10 @@
 #' snipe
 #'
-#' Initialise targets around a data object
-#' @export
+#' Initialise targets around a data object. The original data object will be moved to inside the new targets structure.
 #' @param path path to data object
 #' @param dir_name name of desired top-level folder
 #' @param manuscript name of the manuscript file if desired, or TRUE to include
+#' @export
 
 snipe <- function(path, dir_name = "Analysis", manuscript = NULL) {
 
