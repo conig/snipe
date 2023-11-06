@@ -1,4 +1,4 @@
-write_main_contents <- function(new_dir) {
+write_main_contents <- function(new_dir, path) {
   main_contents <- glue::glue(
     'library(targets)
 library(future)

@@ -45,7 +45,7 @@ snipe <- function(path, dir_name = "Analysis", manuscript = NULL) {
   if (file.exists(paste0(new_dir, "/_targets.R")))
     stop("HAULT! _targets.R already exists.")
 
-  write_main_contents(new_dir)
+  write_main_contents(new_dir, path)
 
 # data_clean_contents
 
