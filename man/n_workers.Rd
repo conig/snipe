@@ -4,10 +4,12 @@
 \alias{n_workers}
 \title{n_workers}
 \usage{
-n_workers(x = 10)
+n_workers(ncpus = Sys.getenv("snipe_ncpus"), x = 10)
 }
 \arguments{
-\item{x}{numeric. How many workers to reserve for other operations}
+\item{ncpus}{numeric. Number of workers to use, can be set in .Renviron using snipe_ncpus}
+
+\item{x}{numeric. How many workers to reserve for other operations. Used when ncpus not given}
 }
 \description{
 Automatically select number of workers
