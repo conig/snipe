@@ -6,6 +6,6 @@
 #' @export
 
 n_workers <- function(ncpus = Sys.getenv("snipe_ncpus"), x = 10) {
-  if(ncpus != "") return(ncpus)
+  if(ncpus != "") return(as.numeric(ncpus))
   max(c(length(future::availableWorkers()) - x, 1))
 }
