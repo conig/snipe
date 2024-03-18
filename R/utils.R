@@ -9,3 +9,17 @@ n_workers <- function(ncpus = Sys.getenv("snipe_ncpus"), x = 10) {
   if(ncpus != "") return(as.numeric(ncpus))
   max(c(length(future::availableWorkers()) - x, 1))
 }
+
+#' get_R_scripts
+#'
+#' Return list of R scripts
+#' @param recursive. bool. passed to list.files
+#' @export
+
+get_R_scripts <- function(recursive = TRUE){
+  list.files("R",
+             full.names = TRUE,
+             pattern = ".r$",
+             ignore.case = TRUE,
+             recursive = recursive)
+}
