@@ -4,9 +4,11 @@
 \alias{get_R_scripts}
 \title{get_R_scripts}
 \usage{
-get_R_scripts(recursive = TRUE)
+get_R_scripts(dir = getwd(), recursive = TRUE)
 }
 \arguments{
+\item{dir}{dir to search in. Defaults to working directory.}
+
 \item{recursive.}{bool. passed to list.files}
 }
 \description{

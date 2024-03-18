@@ -13,11 +13,12 @@ n_workers <- function(ncpus = Sys.getenv("snipe_ncpus"), x = 10) {
 #' get_R_scripts
 #'
 #' Return list of R scripts
+#' @param dir dir to search in. Defaults to working directory.
 #' @param recursive. bool. passed to list.files
 #' @export
 
-get_R_scripts <- function(recursive = TRUE){
-  list.files("R",
+get_R_scripts <- function(dir = getwd(), recursive = TRUE){
+  list.files(dir,
              full.names = TRUE,
              pattern = ".r$",
              ignore.case = TRUE,
