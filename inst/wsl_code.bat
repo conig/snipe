@@ -20,5 +20,4 @@ if %errorlevel% neq 0 (
     echo Error: Failed to open WSL path in Visual Studio Code.
 )
 
-pause
 endlocal
