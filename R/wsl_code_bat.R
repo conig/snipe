@@ -17,5 +17,11 @@ wsl_vscode_bat <- function(path) {
         path <- gsub("C:/", "/mnt/c/", path)
     }
     # copy bat to location
-   file.copy(bat_path, paste0(path,"/wsl_code.bat"), overwrite = FALSE)
+   success <- file.copy(bat_path, paste0(path,"/wsl_code.bat"), overwrite = FALSE)
+   if(success){
+        message("wsl_code.bat created successfully.")
+   }else{
+        message("wsl_code.bat couldn't be created")
+   } 
+    
 }
