@@ -4,12 +4,14 @@
 \alias{tar_bignetwork}
 \title{tar_bignetwork}
 \usage{
-tar_bignetwork(width = "1020px", height = "980px")
+tar_bignetwork(width = "1000px", height = "950px", ...)
 }
 \arguments{
 \item{width}{string including "px"}
 
 \item{height}{string including "px"}
+
+\item{...}{additional arguments to targets::tar_visnetwork}
 }
 \description{
 Makes a bigger html widget tar_visnetwork
