@@ -13,4 +13,6 @@ Imports:
     rstudioapi,
     tools,
     future,
-    future.callr
+    future.callr,
+    visNetwork,
+    targets

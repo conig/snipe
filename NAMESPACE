@@ -3,4 +3,5 @@
 export(get_R_scripts)
 export(n_workers)
 export(snipe)
+export(tar_bignetwork)
 export(wsl_vscode_bat)
