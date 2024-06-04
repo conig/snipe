@@ -12,8 +12,20 @@ if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs"
 fsutil dirty query %systemdrive% 1>nul 2>nul || (
     
     :: Create a VBScript to elevate the current script
-    echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/c cd ""%~sdp0"" && ""%~s0"" %params% && exit", "", "runas", 1 >> "%temp%\getadmin.vbs"
-    
+    echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/c cd ""%~dp0"" && ""%~s0"" %params% && exit", "", "runas", 1 > "%temp%\getadmin.vbs"
+
+    :: Expected checksum
+    set "expectedChecksum=67c513293d0d77c0eb678f39b1d906168f2c809b3176b6df94d4a69f901726d6"
+
+    :: Calculate the checksum of the created VBScript
+    for /f "tokens=1" %%a in ('certutil -hashfile "%temp%\getadmin.vbs" SHA256 ^| find /i /v "SHA256"') do set "actualChecksum=%%a"
+
+    :: Verify the checksum
+    if /i not "%actualChecksum%"=="%expectedChecksum%" (
+        echo Checksum verification failed. Exiting.
+        exit /B 1
+    )
+
     :: Execute the VBScript to request administrator privileges
     "%temp%\getadmin.vbs"
     
