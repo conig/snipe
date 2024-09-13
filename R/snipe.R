@@ -6,7 +6,7 @@
 #' @param manuscript name of the manuscript file if desired, or TRUE to include
 #' @export
 
-snipe <- function(path, dir_name = "Analysis", manuscript = NULL) {
+snipe <- function(path = getwd(), dir_name = "Analysis", manuscript = NULL) {
 
   # Allow manuscript to be set with TRUE
   if(!is.null(manuscript)) {
