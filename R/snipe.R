@@ -7,7 +7,6 @@
 #' @export
 
 snipe <- function(path = getwd(), dir_name = "Analysis", manuscript = NULL) {
-
   # Allow manuscript to be set with TRUE
   if(!is.null(manuscript)) {
     if(methods::is(manuscript, "logical") & manuscript)
@@ -32,8 +31,6 @@ snipe <- function(path = getwd(), dir_name = "Analysis", manuscript = NULL) {
 
   dir.create(paste0(new_dir, "/R"))
   dir.create(paste0(new_dir, "/data"))
-
-  rstudioapi::initializeProject(new_dir)
 
   if(!no_data){
     new_data_path <- glue::glue("{new_dir}/data/{basename(path)}")
