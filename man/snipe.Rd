@@ -4,7 +4,7 @@
 \alias{snipe}
 \title{snipe}
 \usage{
-snipe(path, dir_name = "Analysis", manuscript = NULL)
+snipe(path = getwd(), dir_name = "Analysis", manuscript = NULL)
 }
 \arguments{
 \item{path}{path to data object}
