@@ -15,4 +15,5 @@ Imports:
     future,
     future.callr,
     visNetwork,
+    crew,
     targets
