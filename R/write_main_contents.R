@@ -1,20 +1,13 @@
 write_main_contents <- function(new_dir, path) {
   main_contents <- glue::glue(
-    'library(targets)
-library(future)
+'library(targets)
 library(tarchetypes)
-library(future.callr)
-plan(callr, workers = snipe::n_workers())
+library(crew)
 
-tar_option_set(packages = c("data.table", "future.apply"))
+tar_option_set(packages = c("data.table", "future.apply"),
+    controller = crew_controller_local(workers = 6))
 
-scripts <- list.files("R",
-            full.names = TRUE,
-            pattern = ".r$",
-            ignore.case = TRUE,
-            recursive = TRUE)
-
-for(s in scripts) source(s)
+tar_source()
 
 list(
 tar_target(data_path, "data/{basename(path)}", format = "file"),
