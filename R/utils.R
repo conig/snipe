@@ -1,13 +1,29 @@
 #' n_workers
 #'
-#' Automatically select number of workers
+#' Automatically select number of workers to use in parallel operations
+#' @param reserve_n numeric. How many workers to reserve for other operations. If NULL, reserves a third of workers
+#' @param reserve_p numeric. Proportion of workers to reserve for other operations. Used when reserve_n is NULL
 #' @param ncpus numeric. Number of workers to use, can be set in .Renviron using snipe_ncpus
-#' @param x numeric. How many workers to reserve for other operations. Used when ncpus not given
+#' @param max_workers numeric. Maximum number of workers to return
 #' @export
 
-n_workers <- function(ncpus = Sys.getenv("snipe_ncpus"), x = 10) {
-  if(ncpus != "") return(as.numeric(ncpus))
-  max(c(length(future::availableWorkers()) - x, 1))
+n_workers <- function(
+  reserve_n = NULL,
+  reserve_p = 0.6,
+  max_workers = Inf,
+  ncpus = Sys.getenv("snipe_ncpus")
+) {
+  if (ncpus != "") {
+    return(as.numeric(ncpus))
+  }
+  total_cores <- parallel::detectCores()
+  if (is.null(reserve_n)) {
+    reserve_n <- ceiling(total_cores * reserve_p)
+  }
+  n_cores <- parallel::detectCores() - reserve_n
+  n_cores <- min(n_cores, max_workers)
+  n_cores <- max(n_cores, 1)
+  n_cores
 }
 
 #' get_R_scripts
@@ -17,10 +33,12 @@ n_workers <- function(ncpus = Sys.getenv("snipe_ncpus"), x = 10) {
 #' @param recursive. bool. passed to list.files
 #' @export
 
-get_R_scripts <- function(dir = getwd(), recursive = TRUE){
-  list.files(dir,
-             full.names = TRUE,
-             pattern = ".r$",
-             ignore.case = TRUE,
-             recursive = recursive)
+get_R_scripts <- function(dir = getwd(), recursive = TRUE) {
+  list.files(
+    dir,
+    full.names = TRUE,
+    pattern = ".r$",
+    ignore.case = TRUE,
+    recursive = recursive
+  )
 }

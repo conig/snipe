@@ -4,13 +4,22 @@
 \alias{n_workers}
 \title{n_workers}
 \usage{
-n_workers(ncpus = Sys.getenv("snipe_ncpus"), x = 10)
+n_workers(
+  reserve_n = NULL,
+  reserve_p = 0.6,
+  max_workers = Inf,
+  ncpus = Sys.getenv("snipe_ncpus")
+)
 }
 \arguments{
-\item{ncpus}{numeric. Number of workers to use, can be set in .Renviron using snipe_ncpus}
+\item{reserve_n}{numeric. How many workers to reserve for other operations. If NULL, reserves a third of workers}
 
-\item{x}{numeric. How many workers to reserve for other operations. Used when ncpus not given}
+\item{reserve_p}{numeric. Proportion of workers to reserve for other operations. Used when reserve_n is NULL}
+
+\item{max_workers}{numeric. Maximum number of workers to return}
+
+\item{ncpus}{numeric. Number of workers to use, can be set in .Renviron using snipe_ncpus}
 }
 \description{
-Automatically select number of workers
+Automatically select number of workers to use in parallel operations
 }
