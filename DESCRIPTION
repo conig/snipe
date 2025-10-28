@@ -1,13 +1,13 @@
 Package: snipe
 Title: Initialise Targets Pipeline Around Data Objects
-Version: 0.0.2
+Version: 0.1.0
 Description: Provides utilities for automatically creating a project structure designed for a targets pipeline. It handles data object relocation, directory setup, and initialises key R scripts for a seamless start in data analysis.
 Authors@R: 
     person("James", "Conigrave", email = "james.conigrave@gmail.com", role = c("aut", "cre"))
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports: 
     glue,
     rstudioapi,
@@ -17,3 +17,6 @@ Imports:
     visNetwork,
     crew,
     targets
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

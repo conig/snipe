@@ -26,14 +26,14 @@ n_workers <- function(
   n_cores
 }
 
-#' get_R_scripts
+#' source_R
 #'
 #' Return list of R scripts
 #' @param dir dir to search in. Defaults to working directory.
 #' @param recursive. bool. passed to list.files
 #' @export
 
-get_R_scripts <- function(dir = getwd(), recursive = TRUE) {
+source_R <- function(dir = getwd(), recursive = TRUE) {
   list.files(
     dir,
     full.names = TRUE,
